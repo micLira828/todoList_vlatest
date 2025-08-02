@@ -1,6 +1,10 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
 
+// backend/routes/api/index.js
+
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
 
 
 
@@ -8,6 +12,17 @@ const router = require('express').Router();
 // GET /api/set-token-cookie
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
+
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
+
+router.post('/test', (req, res) => {
+  res.json({ requestBody: req.body });
+});
+
+module.exports = router;
+
 
 router.use(restoreUser);
 router.get('/set-token-cookie', async (_req, res) => {
