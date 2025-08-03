@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      const columnMapping = {
+      through: 'ListTodo', // model name referencing the join table
+      foreignKey: 'listId',
+      otherKey: 'todoId'
+      };
+      Todo.belongsToMany(models.List, columnMapping);
     }
   }
   Todo.init({
