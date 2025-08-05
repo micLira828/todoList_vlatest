@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       // define association here
+      User.hasMany(
+           models.List,
+             { foreignKey:'userId', onDelete: 'Cascade'}
+            );
+            User.hasMany(
+              models.Todo,
+                { foreignKey:'userId', onDelete: 'Cascade'}
+               ); 
     }
   }
 

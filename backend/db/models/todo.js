@@ -17,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'todoId'
       };
       Todo.belongsToMany(models.List, columnMapping);
+      Todo.belongsTo(
+        models.User,
+          { foreignKey: 'userId', onDelete: "Cascade"}
+      );
+      Todo.belongsTo(
+        models.List,
+          { foreignKey: 'listId', onDelete: "Cascade"}
+      ); 
     }
   }
   Todo.init({

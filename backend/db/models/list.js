@@ -17,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'todoId'
         };
       List.belongsToMany(models.Todo, columnMapping);
-
+      List.belongsTo(
+            models.User,
+              { foreignKey: 'userId' }
+          ); 
 
     }
   }
