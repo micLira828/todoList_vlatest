@@ -1,4 +1,6 @@
 'use strict';
+// import {Todo} from './todo';
+// import {List} from './list';
 const {
   Model
 } = require('sequelize');
@@ -14,8 +16,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   ListTodo.init({
-    listId: DataTypes.INTEGER,
-    todoId: DataTypes.INTEGER
+    listId: {
+      type:DataTypes.INTEGER,
+      references: {
+      model: 'List', // or 'Bars' (table name)
+      key: 'id',
+      },
+    },
+    todoId: {
+      type:DataTypes.INTEGER,
+      references: {
+        model: 'Todo', // or 'Bars' (table name)
+        key: 'id',
+      },
+    }
   }, {
     sequelize,
     modelName: 'ListTodo',
